@@ -1,6 +1,9 @@
 import speech_recognition
 import pyttsx3
+import requests
+import urllib.request
 
+from bs4 import BeautifulSoup
 from playsound import playsound
 from gtts import gTTS
 
@@ -12,7 +15,6 @@ while True:
 
     try:
         with speech_recognition.Microphone() as mic:
-
             recognizer.adjust_for_ambient_noise(mic, duration=0.2)
             audio = recognizer.listen(mic)
 
@@ -21,17 +23,24 @@ while True:
 
             voice = text
 
-            print(text)
+            if "define" in text:
+                
+                print("Defining...")
+                
+                url='https://www.vocabulary.com/dictionary/' + text
+                htmlfile = urllib.request.urlopen(url)
+                soup = BeautifulSoup(htmlfile, 'lxml')              
+                soup1 = soup.find(class_="short")
+                soup1 = soup1.get_text()
+                print(soup1)
 
-            if "google" in text:
-                print("Googling...")
+
+                
             elif text == "how is your day going":
                 print("Good! Thanks for asking.")
             else:
                 print("Invalid command...")
             
-
-
     except speech_recognition.UnknownValueError:
         recognizer = speech_recognition.Recognizer()
         continue
