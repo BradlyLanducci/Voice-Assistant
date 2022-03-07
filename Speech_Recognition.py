@@ -20,18 +20,33 @@ while True:
             text = text.lower()
 
             voice = text
+
+            print(text)
+
+            if "google" in text:
+                print("Googling...")
+            elif text == "how is your day going":
+                print("Good! Thanks for asking.")
+            else:
+                print("Invalid command...")
             
-            language = 'en'
 
-            myobj = gTTS(text=voice, lang=language, slow=False)
-
-            myobj.save("welcome.mp3")
-  
-            # Playing the converted file
-            #os.system("mpg321 C:/Users/bradl/Desktop/Code Projects/Speech_Recognition/Voice-Assistant/welcome.mp3")
-            playsound('C:/Users/bradl/Desktop/Code Projects/Speech_Recognition/Voice-Assistant/welcome.mp3')
-            print(f"Recognized {text}")
 
     except speech_recognition.UnknownValueError:
         recognizer = speech_recognition.Recognizer()
         continue
+
+
+# Functionality to have it talk back, currently only works by creating a file
+# The main issue with this is it needs to create a new file everytime.
+
+
+##            language = 'en'
+##
+##            myobj = gTTS(text=voice, lang=language, slow=False)
+##
+##            myobj.save("welcome.mp3")
+##  
+##            # Playing the converted file
+##            playsound('C:/Users/bradl/Desktop/Code Projects/Speech_Recognition/Voice-Assistant/welcome.mp3')
+##            print(f"Recognized {text}")
