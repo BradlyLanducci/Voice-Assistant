@@ -20,7 +20,8 @@ def main():
                 audio = recognizer.listen(mic)
                 text = recognizer.recognize_google(audio)
                 text = text.lower()
-                voice = text
+
+                words = text.split(" ")
 
                 if "define" in text:
                         try:
@@ -41,6 +42,46 @@ def main():
                     engine.say("Good! Thanks for asking.")
                     engine.runAndWait()
                     
+                elif "multiply" in text:
+                    num1 = int(words[1])
+                    num2 = int(words[3])
+                    try: 
+                        answer = num1 * num2
+                        engine.say(answer)
+                        engine.runAndWait()
+                    except:
+                        engine.say("To multiply... say multiply, x times y.")
+                        engine.runAndWait()
+                elif "divide" in text:
+                    num1 = int(words[1])
+                    num2 = int(words[3])
+                    try: 
+                        answer = num1 / num2
+                        engine.say(answer)
+                        engine.runAndWait()
+                    except:
+                        engine.say("To multiply... say multiply, x times y.")
+                        engine.runAndWait()
+                elif "add" in text:
+                    num1 = int(words[1])
+                    num2 = int(words[3])
+                    try: 
+                        answer = num1 + num2
+                        engine.say(answer)
+                        engine.runAndWait()
+                    except:
+                        engine.say("To multiply... say multiply, x times y.")
+                        engine.runAndWait()
+                elif "subtract" in text:
+                    num1 = int(words[1])
+                    num2 = int(words[3])
+                    try: 
+                        answer = num1 - num2
+                        engine.say(answer)
+                        engine.runAndWait()
+                    except:
+                        engine.say("To multiply... say multiply, x times y.")
+                        engine.runAndWait()
                 else:
                     engine.say(f"Command {text} doesn't exist.")
                     engine.runAndWait()
