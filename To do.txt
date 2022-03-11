@@ -1,6 +1,6 @@
 Functionality to add:
 
-Basic math
+Basic math - Needs to handle numbers bigger than 999, currently anything beyond is being spelled out rather than written as a integer
 
 Notes
 

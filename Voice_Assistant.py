@@ -20,24 +20,27 @@ def main():
                 audio = recognizer.listen(mic)
                 text = recognizer.recognize_google(audio)
                 text = text.lower()
-
+                print(text)
                 words = text.split(" ")
 
                 if "define" in text:
-                        try:
-                            print("Defining...")
-                            text = text.replace('define ', '')
-                            url='https://www.vocabulary.com/dictionary/' + text
-                            htmlfile = urllib.request.urlopen(url)
-                            soup = BeautifulSoup(htmlfile, 'lxml')              
-                            soup1 = soup.find(class_="short")
-                            soup1 = soup1.get_text()
-                            engine.say(soup1) 
-                            engine.runAndWait()
-                        except:
-                            engine.say("Define command failed. Say, define and then say a word...")
-                            engine.runAndWait()
-                            
+                    try:
+                        print("Defining...")
+                        text = text.replace('define ', '')
+                        url='https://www.vocabulary.com/dictionary/' + text
+                        htmlfile = urllib.request.urlopen(url)
+                        soup = BeautifulSoup(htmlfile, 'lxml')              
+                        soup1 = soup.find(class_="short")
+                        soup1 = soup1.get_text()
+                        engine.say(soup1) 
+                        engine.runAndWait()
+                    except:
+                        engine.say("Define command failed. Say, define and then say a word...")
+                        engine.runAndWait()
+                elif text == "goodbye":
+                    engine.say("Goodbye, program closing.")
+                    engine.runAndWait()
+                    break
                 elif text == "how is your day going":
                     engine.say("Good! Thanks for asking.")
                     engine.runAndWait()
